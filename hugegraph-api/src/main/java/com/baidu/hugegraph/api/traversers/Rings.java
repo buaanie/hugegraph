@@ -39,7 +39,8 @@ import com.baidu.hugegraph.api.graph.VertexAPI;
 import com.baidu.hugegraph.backend.id.Id;
 import com.baidu.hugegraph.core.GraphManager;
 import com.baidu.hugegraph.server.RestServer;
-import com.baidu.hugegraph.traversal.optimize.HugeTraverser;
+import com.baidu.hugegraph.traversal.algorithm.HugeTraverser;
+import com.baidu.hugegraph.traversal.algorithm.SubGraphTraverser;
 import com.baidu.hugegraph.type.define.Directions;
 import com.baidu.hugegraph.util.Log;
 import com.codahale.metrics.annotation.Timed;
@@ -72,7 +73,7 @@ public class Rings extends API {
 
         HugeGraph g = graph(manager, graph);
 
-        HugeTraverser traverser = new HugeTraverser(g);
+        SubGraphTraverser traverser = new SubGraphTraverser(g);
         List<HugeTraverser.Path> paths = traverser.rings(source, dir, edgeLabel,
                                                          depth, degree,
                                                          capacity, limit);

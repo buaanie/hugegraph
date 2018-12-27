@@ -39,7 +39,7 @@ import com.baidu.hugegraph.api.graph.VertexAPI;
 import com.baidu.hugegraph.backend.id.Id;
 import com.baidu.hugegraph.core.GraphManager;
 import com.baidu.hugegraph.server.RestServer;
-import com.baidu.hugegraph.traversal.optimize.HugeTraverser;
+import com.baidu.hugegraph.traversal.algorithm.ShortestPathTraverser;
 import com.baidu.hugegraph.type.define.Directions;
 import com.baidu.hugegraph.util.Log;
 import com.codahale.metrics.annotation.Timed;
@@ -75,7 +75,7 @@ public class ShortestPathAPI extends API {
 
         HugeGraph g = graph(manager, graph);
 
-        HugeTraverser traverser = new HugeTraverser(g);
+        ShortestPathTraverser traverser = new ShortestPathTraverser(g);
         List<Id> path = traverser.shortestPath(sourceId, targetId, dir,
                                                edgeLabel, depth, degree,
                                                capacity);

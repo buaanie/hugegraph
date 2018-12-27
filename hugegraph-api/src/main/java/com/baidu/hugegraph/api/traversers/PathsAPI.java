@@ -39,7 +39,8 @@ import com.baidu.hugegraph.api.graph.VertexAPI;
 import com.baidu.hugegraph.backend.id.Id;
 import com.baidu.hugegraph.core.GraphManager;
 import com.baidu.hugegraph.server.RestServer;
-import com.baidu.hugegraph.traversal.optimize.HugeTraverser;
+import com.baidu.hugegraph.traversal.algorithm.HugeTraverser;
+import com.baidu.hugegraph.traversal.algorithm.PathsTraverser;
 import com.baidu.hugegraph.type.define.Directions;
 import com.baidu.hugegraph.util.Log;
 import com.codahale.metrics.annotation.Timed;
@@ -74,7 +75,7 @@ public class PathsAPI extends API {
         Directions dir = Directions.convert(EdgeAPI.parseDirection(direction));
 
         HugeGraph g = graph(manager, graph);
-        HugeTraverser traverser = new HugeTraverser(g);
+        PathsTraverser traverser = new PathsTraverser(g);
         Set<HugeTraverser.Path> paths;
         paths = traverser.paths(sourceId, dir, targetId, dir.opposite(),
                                 edgeLabel, depth, degree, capacity, limit);
